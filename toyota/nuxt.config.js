@@ -44,6 +44,38 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',
+    // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/pwa',
+    //'@nuxtjs/dotenv',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyBWiFMCU_8QYsRznI4ny7dT-cS4NGEgLy4",
+          authDomain: "aws-toyota-lf2021.firebaseapp.com",
+          projectId: "aws-toyota-lf2021",
+          storageBucket: "aws-toyota-lf2021.appspot.com",
+          messagingSenderId: "535442871685",
+          appId: "1:535442871685:web:1eeca80856213c400aa0ec",
+          measurementId: "G-TBYEVKS2GN"
+        },
+        services: {
+          auth: {
+            emulatorPort: process.env.NODE_ENV === 'development' ? 9099 : undefined
+          },
+          firestore: {
+            emulatorPort: process.env.NODE_ENV === 'development' ? 8080 : undefined
+          },
+          functions: {
+            location: 'asia-northeast1',
+            emulatorPort: process.env.NODE_ENV === 'development' ? 5001 : undefined
+          },
+          storage: true,
+        }
+      }
+    ]
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -67,5 +99,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+    dir: '../dist'
+  },
 }

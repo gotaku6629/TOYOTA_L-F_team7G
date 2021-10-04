@@ -1,77 +1,61 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+    <v-col>
+      <v-row class="mb-5">
+        <v-tabs-items v-model="tab" style="width: 100%; height: 80vh">
+          <v-tab-item>
+            <v-img
+              src="https://lh3.googleusercontent.com/proxy/yzQD0eY2ciL3ZpjT94DQE576w4OwfT4k-kj1tIASzakbDr_F5GUNQMSxkCSECLn6Y93I8otLZPambuXV0BGBfRSn9Iv_cBVtb2HY1gWUtszzd1mhltDb16avi1lrt82IlCMItg"
+            ></v-img>
+          </v-tab-item>
+          <v-tab-item>
+            <v-img
+              src="https://img.hmv.co.jp/image/jacket/400/91/8/2/340.jpg"
+            ></v-img>
+          </v-tab-item>
+          <v-tab-item>
+            <v-img
+              src="https://www.hikaritv.net/resources_v2/hikari/all/sp/parasite/images/im_main_sp.jpg"
+            ></v-img>
+          </v-tab-item>
+        </v-tabs-items>
+        <v-tabs v-model="tab" fixed-tabs>
+          <v-tab>Trends</v-tab>
+          <v-tab>Popular</v-tab>
+          <v-tab>Recently Added</v-tab>
+        </v-tabs>
+      </v-row>
+      <v-row>
+        <v-tabs center-active fixed-tabs>
+          <v-tab v-for="category in categories" :key="category">
+            <v-btn color="primary" x-large>{{ category }}</v-btn>
+          </v-tab>
+          <v-tab-item v-for="category in categories" :key="category">
+            <ThumbnailList :category="category" />
+          </v-tab-item>
+        </v-tabs>
+      </v-row>
     </v-col>
   </v-row>
 </template>
+<script>
+export default {
+  data: () => ({
+    tab: [],
+    categories: [
+      'Animation',
+      'Action',
+      'Comedy',
+      'Artist',
+      'Fiction',
+      'Japan',
+      'Kids',
+    ],
+  }),
+  head() {
+    return {
+      title: 'トップページ',
+    }
+  },
+}
+</script>
