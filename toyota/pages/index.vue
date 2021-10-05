@@ -34,28 +34,66 @@
             <ThumbnailList :category="category" />
           </v-tab-item>
         </v-tabs>
+        <v-btn
+          class="success float-right"
+          @click="post(); dialog = false"
+        >
+          送信
+        </v-btn>        
       </v-row>
     </v-col>
   </v-row>
 </template>
+
 <script>
-export default {
-  data: () => ({
-    tab: [],
-    categories: [
-      'Animation',
-      'Action',
-      'Comedy',
-      'Artist',
-      'Fiction',
-      'Japan',
-      'Kids',
-    ],
-  }),
-  head() {
-    return {
-      title: 'トップページ',
+  import axios from 'axios'
+
+  export default {
+    data: () => ({
+      tab: [],
+      categories: [
+        'Animation',
+        'Action',
+        'Comedy',
+        'Artist',
+        'Fiction',
+        'Japan',
+        'Kids',
+      ],
+    }),
+
+    head() {
+      return {
+        title: 'トップページ',
+        user_id: null,
+        item_id: null,
+        result: null,
+        message: null,
+        snackbar: false
+      }
+    },
+  
+
+    methods: {
+      post() {
+        const instance = axios.create({
+          baseURL: 'https://t1vgygnuvd.execute-api.ap-northeast-1.amazonaws.com/dev/post'
+        })
+        instance.post('/dev/post', {
+          user_id: "gotaku100",
+          item_id: "9"
+        }).then((response) => {
+          this.result = response.data.body
+          this.message = '送信が完了しました'
+        }).catch((error) => {
+          this.result = error
+          this.message = '送信が失敗しました。もう一度お試しください。'
+        }).finally(() => {
+          this.loading = false
+          this.snackbar = true
+        })
+      }
     }
-  },
+
 }
 </script>
