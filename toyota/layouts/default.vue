@@ -4,7 +4,7 @@
       <v-spacer />
       <v-toolbar-title style="padding-right: 10px" v-text="title" />
       <nuxt-link to="/">
-        <img src="/logo/favicon_filmion.png" style="width: 50px" />
+        <img src="/logo/favicon_toyota.png" style="width: 50px" />
       </nuxt-link>
       <v-spacer />
       <v-btn v-if="!user" color="primary" nuxt to="/auth/login">
@@ -61,13 +61,14 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      title: 'toyota l&f',
+      title: 'TOYOTA L&F',
       user: null,
     }
   },
   created() {
     this.bindMovies()
     this.bindRooms()
+    this.bindTasks()
 
     this.$fire.auth.onAuthStateChanged((user) => {
       if (user) {
@@ -81,7 +82,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions({ bindMovies: 'movies/bind', bindRooms: 'rooms/bind' }),
+    ...mapActions({ bindMovies: 'movies/bind', bindRooms: 'rooms/bind', bindTasks: 'tasks/bind' }),
 
     async logout() {
       await this.$fire.auth.signOut()

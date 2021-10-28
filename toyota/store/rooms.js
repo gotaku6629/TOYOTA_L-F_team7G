@@ -12,6 +12,10 @@ export const getters = {
     const res = state.items.filter(room => room.id === roomId)
     return res.length > 0 ? res[0] : null
   },
+  byNumber: (state) => (roomId) => {
+    const res = state.items.filter(room => room.number === roomId)
+    return res.length > 0 ? res[0] : null
+  },  
   byMovie: (state) => (movieId) => {
     return state.items.filter(room => room.movie_uid === movieId)
   },

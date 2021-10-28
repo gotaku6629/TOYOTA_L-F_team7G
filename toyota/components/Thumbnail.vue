@@ -1,5 +1,7 @@
 <template>
   <v-card width="450px" class="my-10">
+
+    <!-- 1.image -->
     <v-img :src="movie.thumbnail2" height="635px">
       <div class="pa-3 text-h5" style="position: absolute; bottom: 0; background-color: rgba(107, 107, 107, 0.5);">
         <span class="primary--text">&#9679;</span>
@@ -7,10 +9,14 @@
         <strong> {{ audience }} Audience </strong>
       </div>
     </v-img>
+    
+    <!-- 2.date -->
     <v-card-text class="text-center"
       ><h2>{{ movie.date }}</h2>
-      <h2>{{ movie.time }}</h2></v-card-text
-    >
+      <h2>{{ movie.time }}</h2>
+    </v-card-text>
+
+    <!-- 3.botton -->
     <v-card-actions class="flex-column" style="height: 100px">
       <v-btn
         block
@@ -33,6 +39,7 @@
     </v-card-actions>
   </v-card>
 </template>
+
 <script>
 const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
